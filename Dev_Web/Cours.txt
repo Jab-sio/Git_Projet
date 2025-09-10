@@ -1,0 +1,121 @@
+{% comment %} boucle Jinja () pour générer automatiquement les 16 images dans ta galerie. C’est une méthode efficace 
+si tes images sont nommées de façon séquentielle, comme ,image_1 image_2 , . Mais si tu veux intégrer les images individuellement, avec des noms de fichiers différents ou un ordre personnalisé, 
+tu dois remplacer cette boucle par du code HTML explicite.
+{% for i in range(16) %}
+  <img src="{{ url_for('static', filename='images/image{{ i+1 }}.jpg') }}">
+{% endfor %} {% endcomment %}
+
+Installer les dépendances : Votre application Flask utilise plusieurs bibliothèques, dont Flask et ollama. Ces dépendances sont généralement listées dans un fichier requirements.txt. Vous devez les installer pour que le code fonctionne.
+
+Ouvrez votre terminal et naviguez jusqu'au dossier de votre projet.
+
+Créez le fichier requirements.txt s'il n'existe pas, en y ajoutant les lignes suivantes :
+
+Plaintext
+
+Flask
+ollama
+Exécutez la commande :
+
+Bash
+
+pip install -r requirements.txt
+Installer et lancer Ollama : C'est l'étape la plus importante pour reproduire la situation précédente. Le serveur de votre application Flask communique avec Ollama via une API.
+
+Téléchargez Ollama depuis son site officiel : Ollama.com.
+
+Installez-le. L'installation démarrera automatiquement le service en arrière-plan.
+
+Dans votre terminal, exécutez la commande pour télécharger le modèle llama3 :
+
+Bash
+
+ollama run llama3
+Cette commande télécharge le modèle si ce n'est pas déjà fait et le lance, le rendant disponible pour votre application.
+
+Exécuter votre application Flask :
+
+Assurez-vous d'être dans le bon dossier (le même que celui de votre fichier Python, probablement app.py).
+
+Lancez votre application avec la commande :
+
+Bash
+
+python app.py
+Votre serveur devrait maintenant être en cours d'exécution. Vous pouvez accéder à l'application en ouvrant votre navigateur et en tapant http://127.0.0.1:5000.
+
+En résumé, la logique est la suivante : Code + Dépendances + Service Ollama = même résultat. Chaque élément est crucial, et les étapes ci-dessus vous assurent de les avoir tous correctement configurés sur votre nouvel environnement.
+;;;;;;;;;;;;;;;;;;;Python ;;;;;;;;;;;;;;;;;;;;;;
+
+pillow pour redimensionner l'image
+0110001011010  le 0 et 1 c'est un état électrique et 1 = électrique/True  0=rien/False c'est un Transitor qui gére le niv élect
+8bit = 1 octet
+oooooooo(0) ===> 11111111(255)
+
+
+Pourquoi rgb : couleur 0-255 car c'est coder en 8bit 
+
+;;;;;;;;;;;;;;;;;;;GIT ;;;;;;;;;;;;;;
+
+Vous cherchez à utiliser Git pour commander des ordinateurs en réseau, ce qui est une excellente manière d'automatiser et de gérer des configurations. Cependant, il y a une clarification importante à faire : Git est un système de gestion de versions de code source, pas un outil de commande à distance pour des réseaux d'ordinateurs.
+
+Vous ne pouvez pas utiliser Git pour "commander" ou "contrôler" des ordinateurs à distance comme le ferait un outil d'administration système comme SSH (Secure Shell) ou des frameworks de gestion de configuration comme Ansible, Chef, ou Puppet. Le rôle de Git est de synchroniser des fichiers (du code, des scripts de configuration) entre différentes machines, pas d'exécuter des commandes sur elles.
+
+Explication de l'approche correcte
+Voici comment Git peut s'intégrer dans un processus de gestion de réseau pour atteindre un objectif similaire à ce que vous souhaitez, en utilisant les bons outils pour chaque tâche.
+
+Stocker les configurations : Vous utilisez Git pour stocker vos fichiers de configuration, vos scripts d'installation ou vos playbooks Ansible. Chaque fois que vous apportez une modification à ces fichiers, vous la commitez et la pushez vers un dépôt central (sur une plateforme comme GitHub, GitLab, ou un serveur Git auto-hébergé).
+
+Synchroniser les configurations : Sur chaque ordinateur du réseau, vous utilisez Git pour puller les dernières modifications. Cela garantit que toutes les machines disposent de la version la plus récente et cohérente de vos fichiers de configuration.
+
+Exécuter les commandes : C'est là que d'autres outils entrent en jeu. Une fois que les fichiers de configuration sont à jour, vous utilisez un outil d'automatisation (comme Ansible) ou des commandes simples (sh, bash) pour appliquer ces configurations et "commander" l'ordinateur.
+
+Commandes Git nécessaires (dans ce contexte)
+Voici les commandes de base pour gérer un dépôt de configuration que plusieurs ordinateurs du réseau pourront utiliser.
+
+git clone https://www.linguee.com/french-english/translation/d%C3%A9p%C3%B4t.html
+
+Utilité : C'est la première commande que vous utilisez sur un nouvel ordinateur pour copier le dépôt de configuration depuis le serveur central.
+
+Contexte : Remplacez https://www.linguee.com/french-english/translation/d%C3%A9p%C3%B4t.html par l'adresse de votre dépôt Git (par exemple, https://github.com/votre_nom_utilisateur/votre_repo.git).
+
+git pull origin main
+
+Utilité : Mettez à jour le dépôt local sur un ordinateur avec les dernières modifications du serveur distant.
+
+Contexte : Cette commande est essentielle pour s'assurer que l'ordinateur travaille toujours avec la version la plus récente des fichiers de configuration.
+
+git status
+
+Utilité : Vérifie l'état actuel de votre dépôt local.
+
+Contexte : Utile pour voir si des fichiers ont été modifiés avant de les mettre à jour.
+
+git add .
+
+Utilité : Ajoute tous les nouveaux fichiers et les modifications au "staging area", prêts à être commités.
+
+git commit -m "[message concis et explicatif]"
+
+Utilité : Enregistre les modifications dans l'historique de votre dépôt local.
+
+Contexte : Le message après l'option -m doit décrire les changements effectués (par exemple, "Ajout de la configuration réseau pour le serveur 2").
+
+git push origin main
+
+Utilité : Envoie les modifications commitées vers le dépôt distant.
+
+Contexte : C'est la commande qui synchronise votre travail avec le serveur central, le rendant disponible pour les autres ordinateurs.
+
+Résumé et schéma de la conduite à tenir
+Le processus se résume en trois étapes, qui se répètent en boucle.
+
+Préparation : Créez un dépôt Git pour stocker vos configurations (par exemple, sur GitHub).
+
+Synchronisation :
+
+Local : Sur l'ordinateur sur lequel vous travaillez, effectuez des modifications, puis utilisez git add ., git commit -m "...", et git push origin main pour les envoyer au dépôt central.
+
+Distant : Sur chaque ordinateur du réseau, utilisez git pull origin main pour récupérer les dernières configurations.
+
+Exécution : Lancez un script ou une commande sur l'ordinateur distant pour appliquer les modifications que vous venez de synchroniser. Par exemple, si vous avez un script installer.sh, vous l'exécutez via SSH ou un autre outil d'automatisation.

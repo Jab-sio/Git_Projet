@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créateur d'histoires IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Le compteur d'histoires</h1>
+        <input type="text" id="userPrompt" placeholder="Écris ton prompt ici...">
+        <button onclick="sendPrompt()">Envoyer</button>
+
+        <div id="storyZone"></div>
+
+        <div class="preset-buttons">
+            <div class="preset" onclick="sendPreset('Une aventure dans la jungle')">
+                <img src="{{ url_for('static', filename='images/jungle.jpg') }}" alt="Jungle">
+                <p>Aventure Jungle</p>
+            </div>
+            <div class="preset" onclick="sendPreset('Un voyage dans l’espace')">
+                <img src="{{ url_for('static', filename='images/espace.jpg') }}" alt="Espace">
+                <p>Voyage Spatial</p>
+            </div>
+            <div class="preset" onclick="sendPreset('Une enquête policière')">
+                <img src="{{ url_for('static', filename='images/enquete.png') }}" alt="Enquête">
+                <p>Enquête</p>
+            </div>
+        </div>
+
+        <button id="addPreset">➕ Ajouter un autre</button>
+
+        <a href="{{ url_for('gallery') }}" class="gallery-link">Voir la galerie</a>
+    </div>
+</body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>
